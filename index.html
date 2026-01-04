@@ -7,16 +7,21 @@
     <title>Library</title>
   </head>
   <body>
-    <h1>Library</h1>
-    <button class='add__book'>Add +</button>
-    <table class='books' id='books'>
-      <tr>
-        <th>Book</th>
-        <th>Author</th>
-        <th>Pages</th>
-        <th>Read?</th>
-        <th>Delete?</th>
-      </tr>
-    </table>
+    <div class='books__container'>
+      <table class='books__table' id='books'>
+        <caption>Library</caption>
+        <tr>
+          <th>Book</th>
+          <th>Author</th>
+          <th>Pages</th>
+          <th>Read?</th>
+          <th>Delete?</th>
+        </tr>
+      </table>
+      <button class='add__book'>Add +</button>
+    </div>
+    <dialog open>
+      <p class='form__title'>Add Book Dialog</p>
+    </dialog>
   </body>
 </html>

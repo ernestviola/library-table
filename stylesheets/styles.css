@@ -9,8 +9,65 @@ body {
   line-height: 1.5;
 }
 
-table, th, td {
-  border: 1px solid;
+body > h1 {
+  margin: 20px 40px;
+}
+
+table {
   border-collapse: collapse;
+}
+
+caption {
+  text-align: left;
+  font-size: 2em;
+  font-weight: 600;
+  margin: 8px 4px;
+}
+
+th, td {
+  border: 1px solid;
   padding: 4px 8px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(180, 179, 179);
+}
+
+.books__container {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.book__remove__td {
+  text-align: center;
+}
+
+.book__remove {
+  border: none;
+  background-color: transparent;
+  cursor: pointer; 
+}
+
+.book__remove > img {
+  filter: brightness(0);
+}
+
+.add__book {
+  height: 30px;
+  width: 60px;
+  background-color: rgb(89, 111, 255);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+
+  align-self: end;
+  margin-bottom: 5px;
+}
+
+.add__book:hover {
+  background-color: rgb(45, 73, 255);
 }

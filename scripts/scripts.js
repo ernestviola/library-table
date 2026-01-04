@@ -83,6 +83,15 @@ for (let i = 0; i < library.length; i++) {
       child.innerHTML = currentBook[key];
       book.appendChild(child);
     }
-  }  
+  }
+  const removeButtonData = document.createElement('td');
+  const removeButton = document.createElement('button');
+  const trashImg = document.createElement('img');
+  trashImg.src = '/images/trash.svg';
+  removeButtonData.className = 'book__remove__td';
+  removeButton.className = 'book__remove';
+  removeButton.appendChild(trashImg);
+  removeButtonData.appendChild(removeButton);
+  book.appendChild(removeButtonData);
   books.appendChild(book);
 }
