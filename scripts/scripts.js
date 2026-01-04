@@ -54,7 +54,7 @@ const addBookToRow = (book) => {
     removeBookFromLibrary(e.currentTarget.getAttribute('data-uuid'));
 
   })
-  trashImg.src = '/images/trash.svg';
+  trashImg.src = 'images/trash.svg';
   removeButtonData.className = 'book__remove__td';
   removeButton.className = 'book__remove';
   removeButton.setAttribute('data-uuid',uuid);
