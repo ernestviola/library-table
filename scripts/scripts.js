@@ -128,5 +128,7 @@ newBookForm.addEventListener('submit', (e) => {
     form.get('read') === 'on',
   );
 
+  newBookForm.reset();
+
   dialog.close();
 })
