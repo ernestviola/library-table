@@ -15,13 +15,26 @@
           <th>Author</th>
           <th>Pages</th>
           <th>Read?</th>
-          <th>Delete?</th>
+          <th></th>
         </tr>
       </table>
-      <button class='add__book'>Add +</button>
+      <button class='add__book' autofocus>Add +</button>
     </div>
     <dialog open>
       <p class='form__title'>Add Book Dialog</p>
+      <form action=''>
+        <label for='book'>Book</label>
+        <input type='text' id='book'>
+        <label for='author'>Author</label>
+        <input type='text' id='author'>
+        <label for='pages'>Pages</label>
+        <input type='number' id='pages'>
+        <div>
+          <label for='read'>Read</label>
+          <input type='checkbox'>
+        </div>
+        <button type='submit'>Save</button>
+      </form>
     </dialog>
   </body>
 </html>
