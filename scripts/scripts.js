@@ -27,9 +27,48 @@ function Book(title, author, pages, read) {
 const addBookToLibrary = (title, author, pages, read) => {
   const book = new Book(title, author, pages, read);
   library.push(book);
+
+  // add book to table
+  addBookToRow(book);
 }
 
-const removeBookFromLibrary = () => {
+const addBookToRow = (book) => {
+  const books = document.getElementById('books');
+  const newRow = document.createElement('tr');
+  let uuid = ''
+  for (key in book) {
+    if (key == 'uuid') {
+      uuid = book[key];
+      newRow.setAttribute('data-uuid',uuid);
+    } else {
+      let child = document.createElement('td');
+      child.innerHTML = book[key];
+      newRow.appendChild(child);
+    }
+  }
+  const removeButtonData = document.createElement('td');
+  const removeButton = document.createElement('button');
+  const trashImg = document.createElement('img');
+  removeButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    removeBookFromLibrary(e.currentTarget.getAttribute('data-uuid'));
+
+  })
+  trashImg.src = '/images/trash.svg';
+  removeButtonData.className = 'book__remove__td';
+  removeButton.className = 'book__remove';
+  removeButton.setAttribute('data-uuid',uuid);
+  removeButton.appendChild(trashImg);
+  removeButtonData.appendChild(removeButton);
+  newRow.appendChild(removeButtonData);
+  books.appendChild(newRow);
+}
+
+const removeBookFromLibrary = (uuid) => {
+  const index = library.findIndex( book => book.uuid = uuid);
+  library.splice(index,1);
+  const tableRow = document.querySelector(`[data-uuid="${uuid}"]`);
+  tableRow.remove();
 
 }
 
@@ -68,30 +107,4 @@ for (let i = 0; i < booksToAdd.length; i++) {
     book.pages,
     book.read
   );
-}
-
-const books = document.getElementById('books');
-
-for (let i = 0; i < library.length; i++) {
-  let currentBook = library[i];
-  const book = document.createElement('tr');
-  for (key in currentBook) {
-    if (key == 'uuid') {
-      book.setAttribute('data-uuid',currentBook[key]);
-    } else {
-      let child = document.createElement('td');
-      child.innerHTML = currentBook[key];
-      book.appendChild(child);
-    }
-  }
-  const removeButtonData = document.createElement('td');
-  const removeButton = document.createElement('button');
-  const trashImg = document.createElement('img');
-  trashImg.src = '/images/trash.svg';
-  removeButtonData.className = 'book__remove__td';
-  removeButton.className = 'book__remove';
-  removeButton.appendChild(trashImg);
-  removeButtonData.appendChild(removeButton);
-  book.appendChild(removeButtonData);
-  books.appendChild(book);
 }
