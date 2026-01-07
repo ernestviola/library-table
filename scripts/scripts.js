@@ -1,27 +1,29 @@
 const library = [];
 
-function Book(title, author, pages, read) {
-  if (!new.target) {
-    throw Error(`You must use the 'new' operator to call the constructor`);
+class Book {
+  title;
+  author;
+  pages;
+  read;
+  uuid = crypto.randomUUID();
+  constructor(title, author, pages, read) {
+    if (title == null && title == undefined || typeof title !== 'string') {
+      throw Error('Invalid title');
+    }
+    if (author == null && author == undefined || typeof author !== 'string') {
+      throw Error('Invalid author');
+    }
+    if (pages == null && pages == undefined || typeof pages !== 'number') {
+      throw Error('Invalid pages');
+    }
+    if (read == null && read == undefined || typeof read !== 'boolean') {
+      throw Error('Invalid read');
+    }
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
   }
-
-  if (title == null && title == undefined || typeof title !== 'string') {
-    throw Error('Invalid title');
-  }
-  if (author == null && author == undefined || typeof author !== 'string') {
-    throw Error('Invalid author');
-  }
-  if (pages == null && pages == undefined || typeof pages !== 'number') {
-    throw Error('Invalid pages');
-  }
-  if (read == null && read == undefined || typeof read !== 'boolean') {
-    throw Error('Invalid read');
-  }
-  this.uuid = crypto.randomUUID();
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
 }
 
 const addBookToLibrary = (title, author, pages, read) => {
@@ -39,7 +41,7 @@ const addBookToRow = (book) => {
   for (key in book) {
     if (key == 'uuid') {
       uuid = book[key];
-      newRow.setAttribute('data-uuid',uuid);
+      newRow.setAttribute('data-uuid', uuid);
     } else {
       let child = document.createElement('td');
       child.innerHTML = book[key];
@@ -57,7 +59,7 @@ const addBookToRow = (book) => {
   trashImg.src = 'images/trash.svg';
   removeButtonData.className = 'book__remove__td';
   removeButton.className = 'book__remove';
-  removeButton.setAttribute('data-uuid',uuid);
+  removeButton.setAttribute('data-uuid', uuid);
   removeButton.appendChild(trashImg);
   removeButtonData.appendChild(removeButton);
   newRow.appendChild(removeButtonData);
@@ -65,8 +67,8 @@ const addBookToRow = (book) => {
 }
 
 const removeBookFromLibrary = (uuid) => {
-  const index = library.findIndex( book => book.uuid = uuid);
-  library.splice(index,1);
+  const index = library.findIndex(book => book.uuid = uuid);
+  library.splice(index, 1);
   const tableRow = document.querySelector(`[data-uuid="${uuid}"]`);
   tableRow.remove();
 
